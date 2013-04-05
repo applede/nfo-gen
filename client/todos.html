@@ -14,6 +14,10 @@
   <div id="side-pane">
     {{> lists}}
   </div>
+
+  <div id="folder-chooser">
+    {{> folder_chooser}}
+  </div>
 </body>
 
 <template name="lists">
@@ -107,5 +111,11 @@
         {{tag_text}} <span class="count">({{count}})</span>
       </div>
     {{/each}}
+  </div>
+</template>
+
+<template name="folder_chooser">
+  <div id="folder-chooser-in" class="{{opened}}">
+    Choose folder
   </div>
 </template>

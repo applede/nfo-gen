@@ -150,7 +150,7 @@ h3 {
     padding: 2px 7px;
     font-size: 80%;
     font-weight: bold;
-    background: #999;
+    background: #69d;
     color: #fff;
     border-radius: 4px;
     -webkit-border-radius: 4px;
@@ -164,6 +164,11 @@ h3 {
     -o-transition: opacity 0.3s linear;
 
     position: relative;
+    border: 1px solid #777;
+}
+
+.opened {
+    visibility: true;
 }
 
 #new-todo-box {
