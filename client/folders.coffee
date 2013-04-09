@@ -1,6 +1,10 @@
+Folders = new Meteor.Collection "folders"
+
+folderHandle = Meteor.subscribe 'folders', () ->
+  console.log 'hi'
+
 Template.lists.events
   'mouseup #addFolder': () ->
-    console.log 'up'
     Session.set('showFolderDialog', true)
 
 Template.page.showFolderDialog = () ->
@@ -11,4 +15,4 @@ Template.folderDialog.events
     Session.set("showFolderDialog", false)
 
 Template.folderDialog.folders = () ->
-  return [ { name: "a" }, { name: "b"}]
+  return Folders.find()
