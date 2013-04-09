@@ -3,6 +3,10 @@
 </head>
 
 <body>
+  {{> page}}
+</body>
+
+<template name="page">
   <div id="top-tag-filter">
     {{> tag_filter}}
   </div>
@@ -16,9 +20,9 @@
   </div>
 
   {{#if showFolderDialog}}
-    {{> folder_dialog}}
+    {{> folderDialog}}
   {{/if}}
-</body>
+</template>
 
 <template name="lists">
   <h3>Folder Lists</h3>
@@ -111,37 +115,5 @@
         {{tag_text}} <span class="count">({{count}})</span>
       </div>
     {{/each}}
-  </div>
-</template>
-
-<template name="folder_dialog">
-  <div class="mask"> </div>
-  <div class="modal">
-    <div class="modal-header">
-      <button type="button" class="close cancel">&times;</button>
-      <h3>Add party</h3>
-    </div>
-
-    <div class="modal-body">
-      {{#if error}}
-        <div class="alert alert-error">{{error}}</div>
-      {{/if}}
-
-      <label>Title</label>
-      <input type="text" class="title span5">
-
-      <label>Description</label>
-      <textarea class="description span5"></textarea>
-
-      <label class="checkbox">
-        <input type="checkbox" class="private">
-        Private party &mdash; invitees only
-      </label>
-    </div>
-
-    <div class="modal-footer">
-      <a href="#" class="btn cancel">Cancel</a>
-      <a href="#" class="btn btn-primary save">Add party</a>
-    </div>
   </div>
 </template>
