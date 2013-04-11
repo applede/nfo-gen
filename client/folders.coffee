@@ -15,4 +15,6 @@ Template.folderDialog.events
     Session.set("showFolderDialog", false)
 
 Template.folderDialog.folders = () ->
+  curDir = Meteor.call 'currentDirectory', (err, result) ->
+    console.log result
   return Folders.find()

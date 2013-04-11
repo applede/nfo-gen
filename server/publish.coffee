@@ -1,5 +1,11 @@
+fs = Npm.require 'fs'
+
 Folders = new Meteor.Collection("folders")
 
 Meteor.publish 'folders', () ->
-  list_id = Folders.insert({name: "x"})
   return Folders.find()
+
+Meteor.methods
+  currentDirectory: () ->
+    console.log 'currentDirectory'
+    return "."
