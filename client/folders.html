@@ -1,8 +1,7 @@
 <template name="folderDialog">
-  <div class="mask cancel"> </div>
-  <div class="modal">
+  <div id="chooseFolder" class="modal hide">
     <div class="modal-header">
-      <button type="button" class="close cancel">&times;</button>
+      <a class="close" data-dismiss="modal">&times;</a>
       <h3>Choose a video folder</h3>
     </div>
 
@@ -10,16 +9,18 @@
       {{#if error}}
         <div class="alert alert-error">{{error}}</div>
       {{/if}}
-      {{#each folders}}
-        <div>
-          {{name}}
-        </div>
-      {{/each}}
+      <ul class="nav nav-list">
+        {{#each folders}}
+          <li>
+            <a href="#">{{name}}</a>
+          </li>
+        {{/each}}
+      </ul>
     </div>
 
     <div class="modal-footer">
-      <a href="#" class="btn cancel">Cancel</a>
-      <a href="#" class="btn btn-primary save">Add folder</a>
+      <a href="#" class="btn" data-dismiss="modal">Cancel</a>
+      <a href="#" class="btn btn-primary">Add folder</a>
     </div>
   </div>
 </template>

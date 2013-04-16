@@ -12,10 +12,13 @@ CurrentFiles = new Meteor.Collection("currentFiles")
 Meteor.publish 'currentFiles', ->
   return CurrentFiles.find()
 
+currentDir = fs.realpathSync '.'
+
 Meteor.methods
   refreshCurrentDirectory: ->
-    cwd = fs.realpathSync('.')
-    console.log 'currentDirectory = ', cwd
-    CurrentFiles.remove()
-    CurrentFiles.insert { name: 'xxx' }
-    return cwd
+    CurrentFiles.remove {}
+    files = fs.readdirSync currentDir
+    files.push '..'
+    files.sort()
+    CurrentFiles.insert { name: filename } for filename in files
+    return currentDir

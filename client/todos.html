@@ -19,9 +19,7 @@
     {{> lists}}
   </div>
 
-  {{#if showFolderDialog}}
-    {{> folderDialog}}
-  {{/if}}
+  {{> folderDialog}}
 </template>
 
 <template name="lists">
@@ -49,9 +47,9 @@
     <div id="createList">
       <input type="text" id="new-list" placeholder="New list" />
     </div>
-    <div id="addFolder">
+    <a id="addFolder" class="btn span1" data-toggle="modal" href="#">
       Add ...
-    </div>
+    </a>
   {{/if}}
 </template>
 
