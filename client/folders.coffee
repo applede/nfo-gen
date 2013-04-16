@@ -1,8 +1,8 @@
 Folders = new Meteor.Collection "folders"
 
-folderHandle = Meteor.subscribe 'folders', () ->
+folderHandle = Meteor.subscribe 'folders', ->
   console.log 'hi'
 
-Template.lists.events
-  'mouseup #addFolder': () ->
+Template.folders.events
+  'mouseup #addFolder': ->
     openDialog()

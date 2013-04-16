@@ -7,5 +7,5 @@ Meteor.subscribe 'currentFiles'
     console.log 'refresh'
     $("#chooseFolder").modal 'show'
 
-Template.folderDialog.folders = ->
+Template.chooseFolderDialog.folders = ->
   return CurrentFiles.find()
