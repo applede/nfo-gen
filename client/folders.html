@@ -18,10 +18,11 @@
       {{#if error}}
         <div class="alert alert-error">{{error}}</div>
       {{/if}}
+      <h5>{{currentDirectory}}</h5>
       <ul class="nav nav-list">
         {{#each folders}}
           <li>
-            <a href="#">{{name}}</a>
+            <a href="#" class="fileitem">{{name}}</a>
           </li>
         {{/each}}
       </ul>
@@ -33,3 +34,4 @@
     </div>
   </div>
 </template>
+<!-- vim: set filetype=handlebars : -->

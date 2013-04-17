@@ -4,5 +4,5 @@ folderHandle = Meteor.subscribe 'folders', ->
   console.log 'hi'
 
 Template.folders.events
-  'mouseup #addFolder': ->
+  'click #addFolder': ->
     openDialog()

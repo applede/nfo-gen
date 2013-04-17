@@ -14,11 +14,19 @@ Meteor.publish 'currentFiles', ->
 
 currentDir = fs.realpathSync '.'
 
+refreshCurrentDir = ->
+  CurrentFiles.remove {}
+  files = fs.readdirSync currentDir
+  files.push '..'
+  files.sort()
+  CurrentFiles.insert { name: filename } for filename in files
+
 Meteor.methods
   refreshCurrentDirectory: ->
-    CurrentFiles.remove {}
-    files = fs.readdirSync currentDir
-    files.push '..'
-    files.sort()
-    CurrentFiles.insert { name: filename } for filename in files
+    refreshCurrentDir()
+    return currentDir
+  changeDirectory: (path) ->
+    currentDir = fs.realpathSync currentDir + '/' + path
+    console.log 'currentDir', currentDir
+    refreshCurrentDir()
     return currentDir
