@@ -26,7 +26,8 @@ Meteor.methods
     refreshCurrentDir()
     return currentDir
   changeDirectory: (path) ->
-    currentDir = fs.realpathSync currentDir + '/' + path
-    console.log 'currentDir', currentDir
-    refreshCurrentDir()
+    newDir = fs.realpathSync currentDir + '/' + path
+    if fs.statSync(newDir).isDirectory()
+      currentDir = newDir
+      refreshCurrentDir()
     return currentDir

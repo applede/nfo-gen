@@ -1,37 +1,40 @@
 <template name="folders">
   <div class="span2">
     <h3>Folders</h3>
-    <a id="addFolder" class="btn span1" data-toggle="modal" href="#">
+    <a id="addFolder" class="btn span1" href="#">
       Add ...
     </a>
   </div>
 </template>
 
 <template name="chooseFolderDialog">
-  <div id="chooseFolder" class="modal hide">
-    <div class="modal-header">
-      <a class="close" data-dismiss="modal">&times;</a>
-      <h3>Choose a video folder</h3>
-    </div>
+  {{#if show}}
+    <div class="mask cancel"></div>
+    <div id="chooseFolder" class="modal">
+      <div class="modal-header">
+        <a class="close cancel">&times;</a>
+        <h3>Choose a video folder</h3>
+      </div>
 
-    <div class="modal-body">
-      {{#if error}}
-        <div class="alert alert-error">{{error}}</div>
-      {{/if}}
-      <h5>{{currentDirectory}}</h5>
-      <ul class="nav nav-list">
-        {{#each folders}}
-          <li>
-            <a href="#" class="fileitem">{{name}}</a>
-          </li>
-        {{/each}}
-      </ul>
-    </div>
+      <div class="modal-body">
+        {{#if error}}
+          <div class="alert alert-error">{{error}}</div>
+        {{/if}}
+        <h5>{{currentDirectory}}</h5>
+        <ul class="nav nav-list">
+          {{#each folders}}
+            <li>
+              <a href="#" class="fileitem">{{name}}</a>
+            </li>
+          {{/each}}
+        </ul>
+      </div>
 
-    <div class="modal-footer">
-      <a href="#" class="btn" data-dismiss="modal">Cancel</a>
-      <a href="#" class="btn btn-primary">Add folder</a>
+      <div class="modal-footer">
+        <a href="#" class="btn cancel">Cancel</a>
+        <a href="#" class="btn btn-primary">Add folder</a>
+      </div>
     </div>
-  </div>
+  {{/if}}
 </template>
 <!-- vim: set filetype=handlebars : -->

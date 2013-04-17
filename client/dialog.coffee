@@ -5,18 +5,23 @@ Meteor.subscribe 'currentFiles'
 @openDialog = ->
   Meteor.call 'refreshCurrentDirectory', (err, result) ->
     Session.set 'currentDir', result
-    $("#chooseFolder").modal 'show'
+    Session.set 'showChooseDialog', true
 
 changeDirectory = (path) ->
   Meteor.call 'changeDirectory', path, (err, result) ->
     Session.set 'currentDir', result
 
+Template.chooseFolderDialog.show = ->
+  return Session.get 'showChooseDialog'
+
 Template.chooseFolderDialog.folders = ->
   return CurrentFiles.find()
 
 Template.chooseFolderDialog.events
+  'click .cancel': ->
+    Session.set 'showChooseDialog', false
+
   'click .fileitem': (event) ->
-    #Session.set 'currentDir', 'xxx'
     console.log event.target.innerHTML
     changeDirectory event.target.innerHTML
 
