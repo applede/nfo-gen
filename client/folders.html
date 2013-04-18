@@ -1,6 +1,11 @@
 <template name="folders">
   <div class="span2">
     <h3>Folders</h3>
+    <ul class="nav nav-list">
+      {{#each folders}}
+        <li>{{name}}</li>
+      {{/each}}
+    </ul>
     <a id="addFolder" class="btn span1" href="#">
       Add ...
     </a>
@@ -32,7 +37,7 @@
 
       <div class="modal-footer">
         <a href="#" class="btn cancel">Cancel</a>
-        <a href="#" class="btn btn-primary">Add folder</a>
+        <a href="#" class="btn btn-primary ok">Add folder</a>
       </div>
     </div>
   {{/if}}

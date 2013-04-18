@@ -21,6 +21,9 @@ Template.chooseFolderDialog.events
   'click .cancel': ->
     Session.set 'showChooseDialog', false
 
+  'click .ok': ->
+    Folders.insert Session.get 'currentDir'
+    
   'click .fileitem': (event) ->
     console.log event.target.innerHTML
     changeDirectory event.target.innerHTML

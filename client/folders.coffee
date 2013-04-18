@@ -1,4 +1,4 @@
-Folders = new Meteor.Collection "folders"
+@Folders = new Meteor.Collection "folders"
 
 folderHandle = Meteor.subscribe 'folders', ->
   console.log 'hi'
@@ -6,3 +6,6 @@ folderHandle = Meteor.subscribe 'folders', ->
 Template.folders.events
   'click #addFolder': ->
     openDialog()
+
+Template.folders.folders = ->
+  Folders.find()
