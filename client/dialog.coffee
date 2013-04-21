@@ -7,6 +7,9 @@ Meteor.subscribe 'currentFiles'
     Session.set 'currentDir', result
     Session.set 'showChooseDialog', true
 
+closeDialog = ->
+  Session.set 'showChooseDialog', false
+
 changeDirectory = (path) ->
   Meteor.call 'changeDirectory', path, (err, result) ->
     Session.set 'currentDir', result
@@ -17,16 +20,17 @@ Template.chooseFolderDialog.show = ->
 Template.chooseFolderDialog.folders = ->
   return CurrentFiles.find()
 
+Template.chooseFolderDialog.currentDirectory = ->
+  return Session.get 'currentDir'
+
 Template.chooseFolderDialog.events
   'click .cancel': ->
-    Session.set 'showChooseDialog', false
+    closeDialog()
 
   'click .ok': ->
-    Folders.insert Session.get 'currentDir'
-    
+    closeDialog()
+    addFolder(Session.get 'currentDir')
+ 
   'click .fileitem': (event) ->
     console.log event.target.innerHTML
     changeDirectory event.target.innerHTML
-
-Template.chooseFolderDialog.currentDirectory = ->
-  return Session.get 'currentDir'

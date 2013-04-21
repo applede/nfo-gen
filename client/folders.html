@@ -1,45 +1,16 @@
 <template name="folders">
-  <div class="span2">
-    <h3>Folders</h3>
-    <ul class="nav nav-list">
-      {{#each folders}}
-        <li>{{name}}</li>
-      {{/each}}
-    </ul>
-    <a id="addFolder" class="btn span1" href="#">
-      Add ...
-    </a>
-  </div>
-</template>
-
-<template name="chooseFolderDialog">
-  {{#if show}}
-    <div class="mask cancel"></div>
-    <div id="chooseFolder" class="modal">
-      <div class="modal-header">
-        <a class="close cancel">&times;</a>
-        <h3>Choose a video folder</h3>
-      </div>
-
-      <div class="modal-body">
-        {{#if error}}
-          <div class="alert alert-error">{{error}}</div>
-        {{/if}}
-        <h5>{{currentDirectory}}</h5>
-        <ul class="nav nav-list">
-          {{#each folders}}
-            <li>
-              <a href="#" class="fileitem">{{name}}</a>
-            </li>
-          {{/each}}
-        </ul>
-      </div>
-
-      <div class="modal-footer">
-        <a href="#" class="btn cancel">Cancel</a>
-        <a href="#" class="btn btn-primary ok">Add folder</a>
-      </div>
+  <h3>Sections</h3>
+    <div class="row-fluid">
+      <ul class="nav nav-list">
+        {{#each folders}}
+        <li>
+          <a class="section">{{name}}</a>
+        </li>
+        {{/each}}
+      </ul>
     </div>
-  {{/if}}
+  <a id="addFolder" class="btn" href="#">
+    Add
+  </a>
 </template>
 <!-- vim: set filetype=handlebars : -->

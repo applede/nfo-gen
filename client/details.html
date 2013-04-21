@@ -1,0 +1,19 @@
+<template name="details">
+  {{#if currentSection}}
+    <h3>{{name}}</h3>
+    <div class="row-fluid">
+      <div class="span1">Folders:</div>
+      <div class="span11">
+        <ul>
+          {{#each folders}}
+          <li>{{name}}</li>
+          {{/each}}
+        </ul>
+        <a class="btn btn-mini"><i class="icon-plus"></i></a>
+      </div>
+    </div>
+    <p>Scraper: {{scraper}}</p>
+    <a class="btn delete">Delete</a>
+  {{/if}}
+</template>
+<!-- vim: set filetype=handlebars : -->
