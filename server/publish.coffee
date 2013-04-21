@@ -1,7 +1,7 @@
-Folders = new Meteor.Collection("folders")
+Sections = new Meteor.Collection("sections")
 
-Meteor.publish 'folders', ->
-  return Folders.find()
+Meteor.publish 'sections', ->
+  return Sections.find()
 
 # CurrentFiles dialog
 

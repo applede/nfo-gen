@@ -29,7 +29,7 @@ Template.chooseFolderDialog.events
 
   'click .ok': ->
     closeDialog()
-    addFolder(Session.get 'currentDir')
+    addSection(Session.get 'currentDir')
  
   'click .fileitem': (event) ->
     console.log event.target.innerHTML
