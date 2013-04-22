@@ -23,3 +23,9 @@ Template.sections.events
 
 Template.sections.sections = ->
   Sections.find()
+
+Template.sections.active = ->
+  currentSection = Session.get('currentSection')
+  if currentSection and currentSection._id == this._id
+    return 'active'
+  return ''
