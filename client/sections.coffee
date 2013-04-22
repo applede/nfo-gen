@@ -7,25 +7,39 @@ addSection = ->
   Sections.insert { name: "untitled" }
 
 @deleteSection = ->
-  section = Session.get('currentSection')
-  if section
-    Sections.remove section._id
+  sectionId = Session.get('currentSectionId')
+  if sectionId
+    Sections.remove sectionId
     selectSection(null)
 
-selectSection = (section) ->
-  Session.set('currentSection', section)
+selectSection = (sectionId) ->
+  Session.set('currentSectionId', sectionId)
+
+@updateSection = (name) ->
+  sectionId = Session.get('currentSectionId')
+  if sectionId
+    Sections.update(sectionId, { $set: { 'name': name }})
+
+@sectionName = ->
+  sectionId = Session.get('currentSectionId')
+  if sectionId
+    sections = Sections.find(sectionId).fetch()
+    if sections[0]
+      return sections[0].name
+    else
+      return null
 
 Template.sections.events
   'click #addSection': ->
     addSection()
   'click .section': ->
-    selectSection(this)
+    selectSection(this._id)
 
 Template.sections.sections = ->
   Sections.find()
 
 Template.sections.active = ->
-  currentSection = Session.get('currentSection')
-  if currentSection and currentSection._id == this._id
+  currentSectionId = Session.get('currentSectionId')
+  if currentSectionId == this._id
     return 'active'
   return ''
