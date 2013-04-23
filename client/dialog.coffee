@@ -2,9 +2,12 @@ CurrentFiles = new Meteor.Collection("currentFiles")
 
 Meteor.subscribe 'currentFiles'
 
-@openDialog = ->
+callback = null
+
+@openChooseFolderDialog = (cb) ->
   Meteor.call 'refreshCurrentDirectory', (err, result) ->
     Session.set 'currentDir', result
+    callback = cb
     Session.set 'showChooseDialog', true
 
 closeDialog = ->
@@ -29,7 +32,7 @@ Template.chooseFolderDialog.events
 
   'click .ok': ->
     closeDialog()
-    addSection(Session.get 'currentDir')
+    callback(Session.get('currentDir')) if callback
  
   'click .fileitem': (event) ->
     console.log event.target.innerHTML

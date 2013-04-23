@@ -29,14 +29,21 @@ Template.details.helpers
   name: ->
     return sectionName()
 
+Template.details.folders = ->
+  return sectionFolders()
+
 Template.details.events
-  'click .delete': ->
+  'click #deleteSection': ->
     deleteSection()
 
-  'dblclick #section-name, click .edit-section-name': (evt, tmpl) ->
+  'dblclick #section-name, click #edit-section-name': (evt, tmpl) ->
     Session.set('editing', true)
     Deps.flush()
     activateInput(tmpl.find("#section-name-input"))
+
+  'click #add-folder': ->
+    openChooseFolderDialog (currentDir) ->
+      addFolderToSection(currentDir)
 
 Template.details.events(okCancelEvents(
   '#section-name-input',

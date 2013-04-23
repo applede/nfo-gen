@@ -17,17 +17,30 @@ selectSection = (sectionId) ->
 
 @updateSection = (name) ->
   sectionId = Session.get('currentSectionId')
-  if sectionId
-    Sections.update(sectionId, { $set: { 'name': name }})
+  Sections.update(sectionId, { $set: { 'name': name }}) if sectionId
+
+currentSection = (property) ->
+  sectionId = Session.get('currentSectionId')
+  return null unless sectionId
+  sections = Sections.find(sectionId).fetch()
+  return null unless sections[0]
+  return sections[0][property]
 
 @sectionName = ->
+  return currentSection('name')
+
+@sectionFolders = ->
+  return currentSection('folders')
+
+@addFolderToSection = (path) ->
   sectionId = Session.get('currentSectionId')
-  if sectionId
-    sections = Sections.find(sectionId).fetch()
-    if sections[0]
-      return sections[0].name
-    else
-      return null
+  return unless sectionId
+  folders = sectionFolders()
+  if folders
+    folders.push(path)
+  else
+    folders = [ path ]
+  Sections.update(sectionId, { $set: { 'folders': folders }})
 
 Template.sections.events
   'click #addSection': ->
