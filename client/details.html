@@ -12,17 +12,17 @@
     {{/if}}
     <div class="row-fluid">
       <div class="span1">Folders:</div>
-      <div class="span6">
-        <table class="table table-bordered">
+      <div class="span4">
+        <ul class="nav nav-list item-list">
           {{#each folders}}
-            <tr>
-              <td>{{this}}</td>
-            </tr>
+            <li class="">
+              <a class="folder-item"><i class="icon-remove"></i>{{this}}</a>
+            </li>
           {{/each}}
-        </table>
-      </div>
-      <div class="span1 xxx bottom-align">
-        <a id="add-folder" class="btn btn-mini bottom-align"><i class="icon-plus"></i></a>
+          <li>
+            <a id="add-folder" class="btn-mini"><i class="icon-plus"></i></a>
+          </li>
+        </ul>
       </div>
     </div>
     <p>Scraper: {{scraper}}</p>

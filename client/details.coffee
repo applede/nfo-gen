@@ -45,6 +45,10 @@ Template.details.events
     openChooseFolderDialog (currentDir) ->
       addFolderToSection(currentDir)
 
+  'click .icon-remove': (event) ->
+    path = event.target.parentNode.innerHTML.replace(/<i.*<\/i>/, '')
+    deleteFolder(path)
+
 Template.details.events(okCancelEvents(
   '#section-name-input',
   ok: (text, evt) ->

@@ -42,6 +42,16 @@ currentSection = (property) ->
     folders = [ path ]
   Sections.update(sectionId, { $set: { 'folders': folders }})
 
+@deleteFolder = (path) ->
+  sectionId = Session.get('currentSectionId')
+  return unless sectionId
+  folders = sectionFolders()
+  return unless folders
+  i = folders.indexOf(path)
+  return if i < 0
+  folders.splice(i, 1)
+  Sections.update(sectionId, { $set: { 'folders': folders }})
+
 Template.sections.events
   'click #addSection': ->
     addSection()
