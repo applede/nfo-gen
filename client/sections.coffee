@@ -45,6 +45,16 @@ currentSection = (property) ->
     folders = [ path ]
   Sections.update(sectionId, { $set: { 'folders': folders }})
 
+@addScraperToSection = (scraper) ->
+  sectionId = Session.get('currentSectionId')
+  return unless sectionId
+  scrapers = sectionScrapers()
+  if scrapers
+    scrapers.push(scraper)
+  else
+    scrapers = [ scraper ]
+  Sections.update(sectionId, { $set: { 'scrapers': scrapers }})
+
 @deleteFolder = (path) ->
   sectionId = Session.get('currentSectionId')
   return unless sectionId
@@ -54,6 +64,16 @@ currentSection = (property) ->
   return if i < 0
   folders.splice(i, 1)
   Sections.update(sectionId, { $set: { 'folders': folders }})
+
+@deleteScraper = (scraper) ->
+  sectionId = Session.get('currentSectionId')
+  return unless sectionId
+  scrapers = sectionScrapers()
+  return unless scrapers
+  i = scrapers.indexOf(scraper)
+  return if i < 0
+  scrapers.splice(i, 1)
+  Sections.update(sectionId, { $set: { 'scrapers': scrapers }})
 
 Template.sections.events
   'click #add-section': ->

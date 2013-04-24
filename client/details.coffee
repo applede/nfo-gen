@@ -42,7 +42,7 @@ Template.details.scrapers = ->
   return {
     name: 'Scrapers'
     items: sectionScrapers()
-    add: -> console.log 'add'
+    add: -> openListDialog('Choose Scraper', scrapers(), 'Choose', (scraper) -> addScraperToSection(scraper))
     remove: (scraper) -> deleteScraper(scraper)
   }
 

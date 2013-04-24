@@ -17,16 +17,16 @@ changeDirectory = (path) ->
   Meteor.call 'changeDirectory', path, (err, result) ->
     Session.set 'currentDir', result
 
-Template.chooseFolderDialog.show = ->
+Template.folder_dialog.show = ->
   return Session.get 'showChooseDialog'
 
-Template.chooseFolderDialog.folders = ->
+Template.folder_dialog.folders = ->
   return CurrentFiles.find()
 
-Template.chooseFolderDialog.currentDirectory = ->
+Template.folder_dialog.currentDirectory = ->
   return Session.get 'currentDir'
 
-Template.chooseFolderDialog.events
+Template.folder_dialog.events
   'click .cancel': ->
     closeDialog()
 
@@ -35,5 +35,4 @@ Template.chooseFolderDialog.events
     callback(Session.get('currentDir')) if callback
  
   'click .fileitem': (event) ->
-    console.log event.target.innerHTML
     changeDirectory event.target.innerHTML
