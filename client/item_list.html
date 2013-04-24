@@ -1,0 +1,17 @@
+<template name="item_list">
+  <div class="row-fluid item-list-container">
+    <div class="span1">{{name}}:</div>
+    <div class="span4">
+      <ul class="nav nav-list item-list">
+        {{#each items}}
+          <li>
+            <a><i class="icon-remove"></i>{{this}}</a>
+          </li>
+        {{/each}}
+        <li>
+          <a id="add-item" class="btn-mini"><i class="icon-plus"></i></a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</template>

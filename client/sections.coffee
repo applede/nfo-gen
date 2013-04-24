@@ -32,6 +32,9 @@ currentSection = (property) ->
 @sectionFolders = ->
   return currentSection('folders')
 
+@sectionScrapers = ->
+  return currentSection('scrapers')
+
 @addFolderToSection = (path) ->
   sectionId = Session.get('currentSectionId')
   return unless sectionId
@@ -53,7 +56,7 @@ currentSection = (property) ->
   Sections.update(sectionId, { $set: { 'folders': folders }})
 
 Template.sections.events
-  'click #addSection': ->
+  'click #add-section': ->
     addSection()
   'click .section': ->
     selectSection(this._id)

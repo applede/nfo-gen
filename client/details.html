@@ -7,26 +7,16 @@
     {{else}}
       <div id="section-name" class="display">
         {{name}}
-        <i id="edit-section-name" class="icon-pencil bottom-align"></i>
+        <i id="edit-section-name" class="icon-pencil grey-button"></i>
+        <i id="delete-section" class="icon-ban-circle grey-button"></i>
       </div>
     {{/if}}
-    <div class="row-fluid">
-      <div class="span1">Folders:</div>
-      <div class="span4">
-        <ul class="nav nav-list item-list">
-          {{#each folders}}
-            <li class="">
-              <a class="folder-item"><i class="icon-remove"></i>{{this}}</a>
-            </li>
-          {{/each}}
-          <li>
-            <a id="add-folder" class="btn-mini"><i class="icon-plus"></i></a>
-          </li>
-        </ul>
-      </div>
-    </div>
-    <p>Scraper: {{scraper}}</p>
-    <a id="deleteSection" class="btn">Delete</a>
+    {{#with folders}}
+      {{> item_list}}
+    {{/with}}
+    {{#with scrapers}}
+      {{> item_list}}
+    {{/with}}
   {{/if}}
 </template>
 <!-- vim: set filetype=handlebars : -->

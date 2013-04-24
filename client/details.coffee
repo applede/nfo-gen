@@ -30,24 +30,30 @@ Template.details.helpers
     return sectionName()
 
 Template.details.folders = ->
-  return sectionFolders()
+  return {
+    name: 'Folders'
+    items: sectionFolders()
+    add: ->
+      openChooseFolderDialog((currentDir) -> addFolderToSection(currentDir))
+    remove: (path) -> deleteFolder(path)
+  }
+
+Template.details.scrapers = ->
+  return {
+    name: 'Scrapers'
+    items: sectionScrapers()
+    add: -> console.log 'add'
+    remove: (scraper) -> deleteScraper(scraper)
+  }
 
 Template.details.events
-  'click #deleteSection': ->
+  'click #delete-section': ->
     deleteSection()
 
   'dblclick #section-name, click #edit-section-name': (evt, tmpl) ->
     Session.set('editing', true)
     Deps.flush()
     activateInput(tmpl.find("#section-name-input"))
-
-  'click #add-folder': ->
-    openChooseFolderDialog (currentDir) ->
-      addFolderToSection(currentDir)
-
-  'click .icon-remove': (event) ->
-    path = event.target.parentNode.innerHTML.replace(/<i.*<\/i>/, '')
-    deleteFolder(path)
 
 Template.details.events(okCancelEvents(
   '#section-name-input',
