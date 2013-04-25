@@ -55,6 +55,10 @@ Template.details.events
     Deps.flush()
     activateInput(tmpl.find("#section-name-input"))
 
+  'click .scan': ->
+    Meteor.call('scanSection', (err, result) ->
+    )
+
 Template.details.events(okCancelEvents(
   '#section-name-input',
   ok: (text, evt) ->

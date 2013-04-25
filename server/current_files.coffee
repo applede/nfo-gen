@@ -1,8 +1,3 @@
-Sections = new Meteor.Collection("sections")
-
-Meteor.publish 'sections', ->
-  return Sections.find()
-
 # CurrentFiles dialog
 
 fs = Npm.require 'fs'

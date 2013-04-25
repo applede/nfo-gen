@@ -3,18 +3,30 @@
 .item-list-container
   margin 15px
 
-.item-list {
-  width: 400px;
-  margin: 0px 0 0;
-  padding: 0;
-  background-color: #fff;
-  -webkit-border-radius: 6px;
-     -moz-border-radius: 6px;
-          border-radius: 6px;
-  -webkit-box-shadow: 0 1px 4px rgba(0,0,0,.065);
-     -moz-box-shadow: 0 1px 4px rgba(0,0,0,.065);
-          box-shadow: 0 1px 4px rgba(0,0,0,.065);
-}
+.item-list-left
+  display inline-block
+  width 5em
+  vertical-align top
+
+.item-list-middle
+  display inline-block
+  width 30em
+
+.item-list-right
+  display inline-block
+  margin-left 3px
+
+.item-list
+  margin 0px
+  padding 0
+  background-color #fff
+  -webkit-border-radius 6px
+     -moz-border-radius 6px
+          border-radius 6px
+  -webkit-box-shadow 0 1px 4px rgba(0,0,0,.065)
+     -moz-box-shadow 0 1px 4px rgba(0,0,0,.065)
+          box-shadow 0 1px 4px rgba(0,0,0,.065)
+
 .item-list > li > a {
   display: block;
   margin: 0 0 -1px;
@@ -44,14 +56,14 @@
   margin-right: -6px;
   opacity: normal-opacity
 
-.item-list .icon-plus
-  opacity: normal-opacity
+.item-list-right .icon-plus
+  opacity normal-opacity
 
 .item-list > li > a:hover
   background-color: #fff;
 
 .item-list a:hover .icon-remove,
-.item-list a:hover .icon-plus
+.item-list-right a:hover .icon-plus
   opacity over-opacity
 
 .item-list .active .icon-remove,
