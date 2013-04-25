@@ -34,5 +34,5 @@ Template.folder_dialog.events
     closeDialog()
     callback(Session.get('currentDir')) if callback
  
-  'click .fileitem': (event) ->
+  'click .file-item': (event) ->
     changeDirectory event.target.innerHTML

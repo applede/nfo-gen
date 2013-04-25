@@ -1,7 +1,7 @@
 <template name="folder_dialog">
   {{#if show}}
     <div class="mask cancel"></div>
-    <div id="chooseFolder" class="modal">
+    <div class="modal">
       <div class="modal-header">
         <a class="close cancel"><i class="icon-remove"></i></a>
         <h3>Choose a folder</h3>
@@ -11,11 +11,11 @@
         {{#if error}}
           <div class="alert alert-error">{{error}}</div>
         {{/if}}
-        <h5>{{currentDirectory}}</h5>
+        <div class="alert alert-info">{{currentDirectory}}</div>
         <ul class="nav nav-list">
           {{#each folders}}
             <li>
-              <a href="#" class="fileitem">{{name}}</a>
+              <a class="file-item">{{name}}</a>
             </li>
           {{/each}}
         </ul>
