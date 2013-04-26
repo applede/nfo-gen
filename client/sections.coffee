@@ -7,20 +7,20 @@ addSection = ->
   Sections.insert { name: "untitled" }
 
 @deleteSection = ->
-  sectionId = Session.get('currentSectionId')
+  sectionId = Session.get('sectionId')
   if sectionId
     Sections.remove sectionId
     selectSection(null)
 
 selectSection = (sectionId) ->
-  Session.set('currentSectionId', sectionId)
+  Session.set('sectionId', sectionId)
 
 @updateSection = (name) ->
-  sectionId = Session.get('currentSectionId')
+  sectionId = Session.get('sectionId')
   Sections.update(sectionId, { $set: { 'name': name }}) if sectionId
 
 currentSection = (property) ->
-  sectionId = Session.get('currentSectionId')
+  sectionId = Session.get('sectionId')
   return null unless sectionId
   sections = Sections.find(sectionId).fetch()
   return null unless sections[0]
@@ -36,7 +36,7 @@ currentSection = (property) ->
   return currentSection('scrapers')
 
 @addFolderToSection = (path) ->
-  sectionId = Session.get('currentSectionId')
+  sectionId = Session.get('sectionId')
   return unless sectionId
   folders = sectionFolders()
   if folders
@@ -46,7 +46,7 @@ currentSection = (property) ->
   Sections.update(sectionId, { $set: { 'folders': folders }})
 
 @addScraperToSection = (scraper) ->
-  sectionId = Session.get('currentSectionId')
+  sectionId = Session.get('sectionId')
   return unless sectionId
   scrapers = sectionScrapers()
   if scrapers
@@ -56,7 +56,7 @@ currentSection = (property) ->
   Sections.update(sectionId, { $set: { 'scrapers': scrapers }})
 
 @deleteFolder = (path) ->
-  sectionId = Session.get('currentSectionId')
+  sectionId = Session.get('sectionId')
   return unless sectionId
   folders = sectionFolders()
   return unless folders
@@ -66,7 +66,7 @@ currentSection = (property) ->
   Sections.update(sectionId, { $set: { 'folders': folders }})
 
 @deleteScraper = (scraper) ->
-  sectionId = Session.get('currentSectionId')
+  sectionId = Session.get('sectionId')
   return unless sectionId
   scrapers = sectionScrapers()
   return unless scrapers
@@ -85,7 +85,7 @@ Template.sections.sections = ->
   Sections.find()
 
 Template.sections.active = ->
-  currentSectionId = Session.get('currentSectionId')
-  if currentSectionId == this._id
+  sectionId = Session.get('sectionId')
+  if sectionId == this._id
     return 'active'
   return ''

@@ -46,6 +46,12 @@ Template.details.scrapers = ->
     remove: (scraper) -> deleteScraper(scraper)
   }
 
+Template.details.scanDisabled = ->
+  if Session.get('scanDisabled')
+    return 'disabled'
+  else
+    return ''
+
 Template.details.events
   'click #delete-section': ->
     deleteSection()
@@ -56,8 +62,10 @@ Template.details.events
     activateInput(tmpl.find("#section-name-input"))
 
   'click .scan': ->
-    Meteor.call('scanSection', (err, result) ->
-    )
+    return if Session.get('scanDisabled')
+    Session.set('scanDisabled', true)
+    Meteor.call 'scanSection', Session.get('sectionId'), (err, result) ->
+      Session.set('scanDisabled', false)
 
 Template.details.events(okCancelEvents(
   '#section-name-input',

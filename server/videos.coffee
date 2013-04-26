@@ -4,21 +4,30 @@ fs = Npm.require 'fs'
 
 Videos = new Meteor.Collection('videos')
 
-Meteor.publish 'videos', ->
-  return Videos.find()
+Meteor.publish 'videos', (sectionId) ->
+  return Videos.find({ sectionId: sectionId })
 
 Meteor.methods
-  scanSection: ->
-    scanSections()
+  scanSection: (sectionId) ->
+    this.unblock()
+    scanSections(sectionId)
+    return true
 
-scanSections = ->
-  sections = allSections().fetch()
-  for s in sections
-    if s.folders
-      scanFolder(f) for f in s.folders
+  removeVideos: ->
+    Videos.remove {}
 
-scanFolder = (path) ->
-  if fs.statSync(path).isDirectory()
-    files = fs.readdirSync(path)
+scanSections = (sectionId) ->
+  section = sectionFor(sectionId)
+  if section.folders
+    Videos.remove { sectionId: sectionId }
+    scanFolder(sectionId, f) for f in section.folders
+
+scanFolder = (sectionId, folder) ->
+  if fs.statSync(folder).isDirectory()
+    files = fs.readdirSync(folder)
     for f in files
-      Videos.insert({ filename: f })
+      path = folder + '/' + f
+      isFolder = fs.statSync(path).isDirectory()
+      item = { sectionId: sectionId, path: path, folder: folder, filename: f, isFolder: isFolder }
+      Videos.insert(item)
+      scrape(item)

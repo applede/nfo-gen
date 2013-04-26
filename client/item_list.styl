@@ -27,12 +27,12 @@
      -moz-box-shadow 0 1px 4px rgba(0,0,0,.065)
           box-shadow 0 1px 4px rgba(0,0,0,.065)
 
-.item-list > li > a {
-  display: block;
-  margin: 0 0 -1px;
-  padding: 4px 14px;
-  border: 1px solid #e5e5e5;
-}
+.item-list > li > a
+  display block
+  margin 0 0 -1px
+  padding 4px 14px
+  border 1px solid #e5e5e5
+
 .item-list > li:first-child > a
   border-top()
 
@@ -56,13 +56,15 @@
   margin-right: -6px;
   opacity: normal-opacity
 
-.item-list-right .icon-plus
+.item-list-right .icon-plus,
+.item-list .icon-plus
   opacity normal-opacity
 
 .item-list > li > a:hover
   background-color: #fff;
 
 .item-list a:hover .icon-remove,
+.item-list a:hover .icon-plus,
 .item-list-right a:hover .icon-plus
   opacity over-opacity
 

@@ -3,15 +3,21 @@
     <div class="item-list-left">{{name}}:</div>
     <div class="item-list-middle">
       <ul class="nav nav-list item-list">
-        {{#each items}}
+        {{#if items.length}}
+          {{#each items}}
+            <li>
+              <a><i class="icon-remove"></i>{{this}}</a>
+            </li>
+          {{/each}}
+        {{else}}
           <li>
-            <a><i class="icon-remove"></i>{{this}}</a>
+            <a class="add-item"><i class="icon-plus"></i></a>
           </li>
-        {{/each}}
+        {{/if}}
       </ul>
     </div>
     <div class="item-list-right">
-      <a id="add-item" class="btn btn-mini"><i class="icon-plus"></i></a>
+      <a class="btn btn-mini add-item"><i class="icon-plus"></i></a>
     </div>
   </div>
 </template>

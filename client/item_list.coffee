@@ -1,5 +1,5 @@
 Template.item_list.events
-  'click #add-item': (event, template) ->
+  'click .add-item': (event, template) ->
     template.data.add() if template.data.add
 
   'click .icon-remove': (event, template) ->

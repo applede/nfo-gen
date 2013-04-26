@@ -1,8 +1,22 @@
 <template name="videos">
-  <div>Unidentified</div>
-  <ul>
-  {{#each videos}}
-    <li>{{filename}}</li>
-  {{/each}}
-  </ul>
+  <div class="alert alert-block space">
+    Unidentified
+  </div>
+  <div class="unidentified">
+    <ul class="nav nav-list">
+      {{#each videos}}
+        <li>
+          <a>
+            {{#if isFolder}}
+              <i class="icon-folder-open"></i>
+            {{else}}
+              <i class="icon-file"></i>
+            {{/if}}
+            {{filename}}
+            <span class="btn btn-small scrape">Scrape</span>
+          </a>
+        </li>
+      {{/each}}
+    </ul>
+  </div>
 </template>
