@@ -4,9 +4,14 @@ Deps.autorun ->
   Meteor.subscribe("videos", Session.get("sectionId"))
 
 Template.videos.videos = ->
-	Videos.find()
+  Videos.find()
 
 Template.videos.events
   'click .scrape': ->
-    Meteor.http.get 'http://javcloud.us/?s=adz-136&submit=Search', (err, result) ->
-      console.log result.content
+    console.log this.path
+    Meteor.call 'scrape', this.path, (err, result) ->
+      console.log 'scrape result'
+      # console.log result
+      # $dom = $('<html>').html(result)
+      # $('body').append($('body').children(), $dom)
+      # console.log $('h1', $dom)
