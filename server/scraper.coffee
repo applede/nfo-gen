@@ -21,8 +21,10 @@ splitWord = (str) ->
   return str.match(/[^, ][^,]+/g)
 
 Meteor.methods
-  scrape: (folder) ->
+  scrape: (videoId) ->
     this.unblock()
+    video = videoFor videoId
+    folder = video.path
     $ = load('/?q=supd-073')
     elem = $('li > a').eq(1)
     title = elem.text()
@@ -52,11 +54,16 @@ Meteor.methods
     """
     path = folder + '/movie.nfo'
     fs.writeFileSync(path, xml)
-
     jpgPath = folder + '/fanart.jpg'
+    posterPath = folder + '/poster.jpg'
     jpgUrl = base + image
-    request(jpgUrl).pipe fs.createWriteStream jpgPath
+    jpgStream = request(jpgUrl).pipe fs.createWriteStream jpgPath
+    jpgStream.on 'close', ->
+      jpg = gm jpgPath
+      jpg.size (err, size) ->
+        width = size.height * 0.707089552238806
+        jpg.crop width, size.height, size.width - width, 0
+        jpg.write posterPath, (err) ->
+          console.log err if err
+    videoScraped videoId
     return ''
-
-# Meteor.http.get 'http://javcloud.us/?s=adz-136&submit=Search', (err, result) ->
-#   console.log result.content

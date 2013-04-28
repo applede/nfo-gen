@@ -1,4 +1,4 @@
-<template name="videos">
+<template name="unscraped_videos">
   <div class="alert alert-block space">
     Unidentified
   </div>
@@ -13,7 +13,22 @@
               <i class="icon-file"></i>
             {{/if}}
             {{filename}}
-            <span class="btn btn-small scrape">Scrape</span>
+            <span class="btn btn-small scrape {{scrapeDisabled}}">Scrape</span>
+          </a>
+        </li>
+      {{/each}}
+    </ul>
+  </div>
+</template>
+<template name="scraped_videos">
+  <div class="scraped">
+    Videos
+    <ul class="nav nav-list">
+      {{#each videos}}
+        <li>
+          <a>
+            <i class="icon-film"></i>
+            {{filename}}
           </a>
         </li>
       {{/each}}

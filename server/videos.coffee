@@ -28,6 +28,17 @@ scanFolder = (sectionId, folder) ->
     for f in files
       path = folder + '/' + f
       isFolder = fs.statSync(path).isDirectory()
-      item = { sectionId: sectionId, path: path, folder: folder, filename: f, isFolder: isFolder }
+      item =
+        sectionId: sectionId
+        path: path
+        folder: folder
+        filename: f
+        isFolder: isFolder
+        scraped: false
       Videos.insert(item)
-      scrape(item)
+
+@videoFor = (id) ->
+  return Videos.findOne id
+
+@videoScraped = (id) ->
+  Videos.update id, { $set: { scraped: true }}
