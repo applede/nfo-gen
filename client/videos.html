@@ -14,6 +14,9 @@
             {{/if}}
             {{filename}}
             <span class="btn btn-small scrape {{scrapeDisabled}}">Scrape</span>
+            {{#if currentScraper}}
+              <span>Trying {{currentScraper}}</span>
+            {{/if}}
           </a>
         </li>
       {{/each}}

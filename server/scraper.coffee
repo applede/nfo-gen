@@ -3,6 +3,15 @@ fs = Npm.require 'fs'
 request = Npm.require 'request'
 gm = Npm.require 'gm'
 
+Scrapers = new Meteor.Collection 'scrapers'
+
+Meteor.publish 'scrapers', ->
+  return Scrapers.find()
+
+@registerScraper = (scraper) ->
+  Scrapers.remove { name: scraper.name }
+  Scrapers.insert scraper
+
 base = 'http://erodvd.blog3.mmm.me'
 
 fetch = (url) ->
